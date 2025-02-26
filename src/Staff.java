@@ -40,6 +40,10 @@ class Customer {
     private String name;
     private double balance = 2567;
 
+    public void buyProducts() {
+        System.out.println(name + " is here to buy Pepsi");
+    }
+
     public Customer(String name, double balance) {
         this.name = name;
         this.balance = balance;
@@ -50,4 +54,5 @@ class Customer {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
 }

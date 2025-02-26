@@ -9,7 +9,6 @@ public class Main {
         manager.staffDuty();
 
         System.out.print("Enter Cashier's name: ");
-
         String cashierName = scanner.nextLine();
         Cashier cashier = new Cashier(cashierName, "Female", 1500);
         System.out.print("Cashier employed: ");
@@ -25,12 +24,12 @@ public class Main {
 
         Customer customer = new Customer(customerName, 2567);
         System.out.println("Current balance: " + customer.getBalance());
+        customer.buyProducts();
 
 
         if (customer.getBalance() >= product.getPrice()) {
             customer.setBalance(customer.getBalance() - product.getPrice());
-            System.out.print("You have successfully purchased one " + product.getName() +
-                    " at " + product.getPrice() +
+            System.out.print("You have successfully purchased one " + product.getName() + " at " + product.getPrice() +
                     ", Remaining balance: " + customer.getBalance());
 
         } else {
