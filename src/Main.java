@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static final String Path = "C:\\Users\\HP\\Downloads\\Products.xlsx";
+    private static final String Path = "C:\\Users\\HP\\OneDrive\\Dokumente\\Products.txt";
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
