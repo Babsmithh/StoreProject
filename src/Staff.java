@@ -29,18 +29,14 @@ class Cashier extends Staff {
     public Cashier(String name, String gender, double salary) {
         super(name, gender, salary);
     }
-
-    @Override
-    public void staffDuty() {
-        System.out.println(name + " is the attending Cashier of the store");
-    }
 }
 
 class Customer {
     private String name;
-    private double balance = 2567;
+    private double balance;
 
     public void buyProducts() {
+
         System.out.println(name + " is here to buy Pepsi");
     }
 
