@@ -1,8 +1,10 @@
 public class Staff extends Store{
+    public String gender;
     public double salary;
 
     public Staff(String name, String gender, double salary) {
-        super(name, gender);
+        super(name);
+        this.gender = gender;
         this.salary = salary;
     }
     public void staffDuty() {
@@ -18,11 +20,6 @@ class Manager extends Staff {
     public void staffDuty() {
         System.out.println(name + " is the manager of the store");
     }
-
-    public void employCashier(String name, double salary, Store store){
-        Cashier cashier = new Cashier(name, gender, salary);
-        store.hireCashier(cashier);
-    }
 }
 
 class Cashier extends Staff {
@@ -32,13 +29,8 @@ class Cashier extends Staff {
 }
 
 class Customer {
-    private String name;
+    public static String name;
     private double balance;
-
-    public void buyProducts() {
-
-        System.out.println(name + " is here to buy Pepsi");
-    }
 
     public Customer(String name, double balance) {
         this.name = name;

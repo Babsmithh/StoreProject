@@ -1,14 +1,10 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static final String Path = "C:\\Users\\HP\\OneDrive\\Dokumente\\Products.txt";
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Store store = new Store("Smith Store", "Undisclosed");
+        Store store = new Store("Smith Store");
         Manager manager = new Manager("Smith", "Male", 15000);
         manager.staffDuty();
 
@@ -19,82 +15,66 @@ public class Main {
 
         System.out.println();
 
-        List<Product> myProducts = loadProductsFromFile();
+        Product[] myProducts = new Product[4];
+        myProducts[0] = new Product("Pepsi", 500, 2);
+        myProducts[1] = new Product("Gala", 250, 3);
+        myProducts[2] = new Product("Water", 1400, 1);
+        myProducts[3] = new Product("Bread", 1250, 81);
 
         System.out.println("Available Products: ");
         for (Product product : myProducts) {
             System.out.println(product.getName() + " - Price: " + product.getPrice() + ", Quantity: " + product.getQuantity());
-
         }
+        System.out.println();
 
-        System.out.print("Enter your name: ");
+        System.out.print("Customer, kindly input your name: ");
         String customerName = scanner.nextLine();
 
         System.out.println("Enter your Initial Balance");
         double initialBalance = scanner.nextDouble();
+        System.out.println();
 
         Customer customer = new Customer(customerName, initialBalance);
 
-        System.out.println("Enter the product you want to buy: ");
-        scanner.nextLine();
-        String productName = scanner.nextLine();
+        boolean multiplePurchase = true;
 
-        Product customerOrder = null;
-        for (Product product : myProducts) {
-            if (product.getName().equalsIgnoreCase(productName)) {
-                customerOrder = product;
-                break;
+        while (multiplePurchase) {
+            System.out.println("Enter the product you want to buy: ");
+            scanner.nextLine();
+            String productName = scanner.nextLine();
+
+            Product customerOrder = null;
+            for (Product product : myProducts) {
+                if (product.getName().equalsIgnoreCase(productName)) {
+                    customerOrder = product;
+                    break;
+                }
             }
-        }
 
-        if (customerOrder != null) {
-            if (customer.getBalance() >= customerOrder.getPrice() && customerOrder.getQuantity() > 0) {
-                customer.setBalance(customer.getBalance() - customerOrder.getPrice());
-                customerOrder.setQuantity(customerOrder.getQuantity() - 1);
-                System.out.print("You have successfully purchased one " + customerOrder.getName() + " at " + customerOrder.getPrice() +
-                        ", Remaining balance: " + customer.getBalance());
-            } else if(customerOrder.getQuantity() <= 0) {
-                System.out.println("Sorry, " + customerOrder.getName() + " is OUT OF STOCK");
+            if (customerOrder != null) {
+                if (customer.getBalance() >= customerOrder.getPrice()) {
+                    customer.setBalance(customer.getBalance() - customerOrder.getPrice());
+                    System.out.print("You have successfully purchased one " + customerOrder.getName() + " at " + customerOrder.getPrice() +
+                            ", Remaining balance: " + customer.getBalance());
+                } else if (customer.getBalance() < customerOrder.getPrice()) {
+                    System.out.println("Insufficient balance to buy " + customerOrder.getName() + ".");
+                }
             } else {
-                System.out.println("Insufficient balance to buy " + customerOrder.getName() + ".");
+                System.out.println("Product not found: " + productName);
             }
-        } else {
-            System.out.println("Product not found: " + productName);
+            System.out.println();
+
+            System.out.println(customerName + ", do you wish to perform another operation?: Y/N ");
+            String nextStep = scanner.nextLine();
+            if (nextStep.equalsIgnoreCase("Y")) {
+                multiplePurchase = true;
+            } else if (nextStep.equalsIgnoreCase("N")) {
+                multiplePurchase = false;
+            } else {
+                System.out.println("Invalid input. Please enter Y or N.");
         }
+            System.out.println("Thank you for visiting " + store.name + "!");
 
-        saveProductsToFile(myProducts);
-
-        System.out.println();
-        System.out.println("Thank you for visiting " + store.name + "!");
-
-    }
-
-    private static List<Product> loadProductsFromFile() {
-        List<Product> products = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(Path))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(","); // Assuming the format: name,price,quantity
-                String name = data[0];
-                double price = Double.parseDouble(data[1]);
-                int quantity = Integer.parseInt(data[2]);
-                products.add(new Product(name, price, quantity));
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading products from file: " + e.getMessage());
         }
-        return products;
-    }
-
-    private static void saveProductsToFile(List<Product> products) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Path))) {
-            for (Product product : products) {
-                writer.write(product.getName() + "," + product.getPrice() + "," + product.getQuantity());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing products to file: " + e.getMessage());
-        }
-    }
 }
-
+}
