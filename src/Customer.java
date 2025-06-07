@@ -1,10 +1,9 @@
-public class Customer {
+public class Customer extends Person {
 
-    public static String name;
     private double balance;
 
     public Customer(String name, double balance) {
-        this.name = name;
+        super(name);
         this.balance = balance;
     }
     public double getBalance() {
@@ -13,4 +12,6 @@ public class Customer {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+
 }
