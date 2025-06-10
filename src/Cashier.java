@@ -1,6 +1,6 @@
 public class Cashier extends Person {
 
-    private int salary;
+    private final int salary;
 
     public Cashier(String name, int salary) {
         super(name);

@@ -6,7 +6,7 @@ public class Store {
     }
 
     public void hireCashier(Cashier cashier) {
-        System.out.println(cashier.name + " has been hired as cashier of " + name);
+        System.out.println(Person.name + " has been hired as cashier of " + name);
     }
 
 }

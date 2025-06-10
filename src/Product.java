@@ -17,8 +17,8 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
-    public int setQuantity(int quantity) {
-        return quantity;
+    public void setQuantity(int newQuantity) {
+        this.quantity = newQuantity;
     }
 }
 
