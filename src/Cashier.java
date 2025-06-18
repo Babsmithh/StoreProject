@@ -1,13 +1,10 @@
-public class Cashier extends Person {
+public class Cashier extends Staff implements Greeting {
 
-    private final int salary;
-
-    public Cashier(String name, int salary) {
-        super(name);
-        this.salary = salary;
+    public Cashier(String name, String gender, double salary) {
+        super(name, gender, salary);
     }
 
     public void greet() {
-        System.out.println("My name is " + name + ". You are welcome to our store. How may we help you?");
+        System.out.println("My name is " + name + ". You are welcome to our store. I'm your attending cashier to walk you through your shopping exercise");
     }
 }

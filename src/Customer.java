@@ -1,4 +1,4 @@
-public class Customer extends Person {
+public class Customer extends Person implements Greeting  {
 
     private double balance;
 
@@ -12,6 +12,7 @@ public class Customer extends Person {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
-
+    public void greet() {
+        System.out.println("Thank you, have a nice day!");
+    }
 }

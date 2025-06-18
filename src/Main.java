@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     private static final String filePath = "C:\\Users\\HP\\IdeaProjects\\StoreProject\\src\\Product.txt";
 
-    public static List<Product> loadProductsFromFile(String file) {
+    public static List<Product> storeProducts(String file) {
         List<Product> productList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))){
@@ -48,14 +48,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Store store = new Store("Smith Store");
-        Manager manager = new Manager("Smith", "Male", 15000);
+        Manager manager = new Manager("Smith", "Male", 3000);
         manager.staffDuty();
         System.out.print("Enter Cashier's name: ");
         String cashierName = scanner.nextLine();
-        Cashier cashier = new Cashier(cashierName, 1500);
-        store.hireCashier(cashier);
         System.out.println();
-        List<Product> myProducts = loadProductsFromFile(filePath);
+        System.out.println("Input your gender: ");
+        String cashierGender = scanner.nextLine();
+        Cashier cashier = new Cashier(cashierName,cashierGender, 1500);
+        manager.greet();
+        System.out.println();
+        List<Product> myProducts = storeProducts(filePath);
         if (myProducts.isEmpty()) {
             System.out.println("File is empty.");
         }
@@ -122,6 +125,7 @@ public class Main {
                 System.out.println("Invalid input. Please enter Y or N.");
             }
         }
+        customer.greet();
         System.out.println("Thank you for visiting " + store.name + "!");
     }
 }
