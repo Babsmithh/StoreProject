@@ -1,0 +1,2 @@
+Product, price, quantity
+bread,120,0

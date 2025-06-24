@@ -67,82 +67,82 @@ public class Main {
             if (name.equalsIgnoreCase("Done")) {
                 break;
             }
-                    System.out.print("Price: ");
-                   int price = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Quantity: ");
-                   int quantity = Integer.parseInt(scanner.nextLine());
+            System.out.print("Price: ");
+            int price = Integer.parseInt(scanner.nextLine());
+            System.out.print("Quantity: ");
+            int quantity = Integer.parseInt(scanner.nextLine());
 
-                myProducts.add(new Product(name,price, quantity));
-            }
-            newProducts(myProducts, filePath);
-
-            if (myProducts.isEmpty()) {
-                System.out.println("File is empty.");
-            }
-            System.out.println("Available Products: ");
-            for (Product product : myProducts) {
-                System.out.println("Name: " + product.getName() + " - Price: " + product.getPrice() + ", Quantity: " + product.getQuantity());
-            }
-
-            System.out.println();
-            System.out.print("Customer, kindly input your name: ");
-            String customerName = scanner.nextLine();
-            cashier.greet();
-            System.out.println("Enter your Initial Balance");
-            double initialBalance = scanner.nextDouble();
-            System.out.println();
-            Customer customer = new Customer(customerName, initialBalance);
-            boolean multiplePurchase = true;
-
-            while (multiplePurchase) {
-                System.out.println("Enter the product you want to buy: ");
-                scanner.nextLine();
-                String productName = scanner.nextLine();
-                Product customerOrder = null;
-                for (Product product : myProducts) {
-                    if (product.getName().equalsIgnoreCase(productName)) {
-                        customerOrder = product;
-                        break;
-                    }
-                }
-                if (customerOrder == null) {
-                    System.out.println("Product not found: " + productName);
-                    continue;
-                }
-                if (customerOrder.getQuantity() <= 0) {
-                    System.out.println("Sorry, Out of stock");
-                } else {
-                    System.out.println("how many pieces of " + productName + " would you like to purchase");
-                    int productQuantity = scanner.nextInt();
-                    scanner.nextLine();
-                    if (productQuantity > customerOrder.getQuantity()) {
-                        System.out.println("Sorry, the product is not available in " + productQuantity + " pieces");
-                        System.out.println("Available quantity: " + customerOrder.getQuantity());
-                    } else {
-                        double totalPrice = productQuantity * customerOrder.getPrice();
-                        if (customer.getBalance() >= totalPrice) {
-                            customer.setBalance(customer.getBalance() - totalPrice);
-                            customerOrder.setQuantity(customerOrder.getQuantity() - productQuantity);
-                            newProducts(myProducts, filePath);
-
-                            System.out.println("You have successfully purchased " + productQuantity + " " + customerOrder.getName() + " at " + totalPrice +
-                                    ", Remaining balance: " + customer.getBalance());
-                            System.out.println("Quantity of " + customerOrder.getName() + " now available: " + customerOrder.getQuantity());
-                        } else {
-                            System.out.println("Insufficient balance to buy " + customerOrder.getName() + ".");
-                        }
-                    }
-                }
-                System.out.println();
-                System.out.println(customerName + ", do you wish to perform another operation?: Y/N ");
-                String checkOut = scanner.nextLine();
-                if (checkOut.equalsIgnoreCase("N")){
-                    multiplePurchase = false;
-                } else if (!checkOut.equalsIgnoreCase("Y")){
-                    System.out.println("Invalid input. Please enter Y or N.");
-                }
-            }
-            customer.greet();
-            System.out.println("Thank you for visiting " + store.name + "!");
+            myProducts.add(new Product(name,price, quantity));
         }
+        newProducts(myProducts, filePath);
+
+        if (myProducts.isEmpty()) {
+            System.out.println("File is empty.");
+        }
+        System.out.println("Available Products: ");
+        for (Product product : myProducts) {
+            System.out.println("Name: " + product.getName() + " - Price: " + product.getPrice() + ", Quantity: " + product.getQuantity());
+        }
+
+        System.out.println();
+        System.out.print("Customer, kindly input your name: ");
+        String customerName = scanner.nextLine();
+        cashier.greet();
+        System.out.println("Enter your Initial Balance");
+        double initialBalance = scanner.nextDouble();
+        System.out.println();
+        Customer customer = new Customer(customerName, initialBalance);
+        boolean multiplePurchase = true;
+
+        while (multiplePurchase) {
+            System.out.println("Enter the product you want to buy: ");
+            scanner.nextLine();
+            String productName = scanner.nextLine();
+            Product customerOrder = null;
+            for (Product product : myProducts) {
+                if (product.getName().equalsIgnoreCase(productName)) {
+                    customerOrder = product;
+                    break;
+                }
+            }
+            if (customerOrder == null) {
+                System.out.println("Product not found: " + productName);
+                continue;
+            }
+            if (customerOrder.getQuantity() <= 0) {
+                System.out.println("Sorry, Out of stock");
+            } else {
+                System.out.println("how many pieces of " + productName + " would you like to purchase");
+                int productQuantity = scanner.nextInt();
+                scanner.nextLine();
+                if (productQuantity > customerOrder.getQuantity()) {
+                    System.out.println("Sorry, the product is not available in " + productQuantity + " pieces");
+                    System.out.println("Available quantity: " + customerOrder.getQuantity());
+                } else {
+                    double totalPrice = productQuantity * customerOrder.getPrice();
+                    if (customer.getBalance() >= totalPrice) {
+                        customer.setBalance(customer.getBalance() - totalPrice);
+                        customerOrder.setQuantity(customerOrder.getQuantity() - productQuantity);
+                        newProducts(myProducts, filePath);
+
+                        System.out.println("You have successfully purchased " + productQuantity + " " + customerOrder.getName() + " at " + totalPrice +
+                                ", Remaining balance: " + customer.getBalance());
+                        System.out.println("Quantity of " + customerOrder.getName() + " now available: " + customerOrder.getQuantity());
+                    } else {
+                        System.out.println("Insufficient balance to buy " + customerOrder.getName() + ".");
+                    }
+                }
+            }
+            System.out.println();
+            System.out.println(customerName + ", do you wish to perform another operation?: Y/N ");
+            String checkOut = scanner.nextLine();
+            if (checkOut.equalsIgnoreCase("N")){
+                multiplePurchase = false;
+            } else if (!checkOut.equalsIgnoreCase("Y")){
+                System.out.println("Invalid input. Please enter Y or N.");
+            }
+        }
+        customer.greet();
+        System.out.println("Thank you for visiting " + store.name + "!");
     }
+}
