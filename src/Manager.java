@@ -1,7 +1,7 @@
 public class Manager extends Staff implements Greeting{
 
         public Manager(String name, String gender, double salary) {
-            super(name, gender, salary);
+            super(name, salary);
         }
     public void greet() {
         System.out.println("My name is " + name + ". You are welcome to our store as the Cashier of our store");

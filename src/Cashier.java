@@ -1,7 +1,7 @@
 public class Cashier extends Staff implements Greeting {
 
-    public Cashier(String name, String gender, double salary) {
-        super(name, gender, salary);
+    public Cashier(String name, double salary) {
+        super(name, salary);
     }
 
     public void greet() {

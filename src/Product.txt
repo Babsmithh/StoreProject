@@ -1,5 +1,0 @@
-Pepsi,500,5
-Gala,250,3
-Water,2000,4
-Bread,500,4
-laptop,1000,5
