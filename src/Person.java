@@ -1,8 +1,11 @@
 abstract class Person {
-    public static String name;
+    protected String name;
 
     public Person(String name) {
-        Person.name = name;
+        this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 }
