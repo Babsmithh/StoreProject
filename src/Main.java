@@ -53,14 +53,13 @@ public class Main {
 
         System.out.print("Enter Cashier's name: ");
         String cashierName = scanner.nextLine();
-        System.out.println();
+        System.out.println("Enter Cashier's salary");
         Cashier cashier = new Cashier(cashierName, 1500);
         manager.greet();
 
         List<Product> myProducts = storeProducts(filePath);
         System.out.println();
         System.out.println("Kindly upload products details(Or type Done to end): ");
-
         while (true) {
             System.out.print("Product Name: ");
             String name = scanner.nextLine();
@@ -171,20 +170,6 @@ public class Main {
                         ", Arrived at: " + attendingCustomer.getArrivalTime());
 
                 System.out.println("\nTotal Queue: " + ArrivalQueue.size());
-                if (!ArrivalQueue.isEmpty()) {
-                    System.out.print("Customers currently in queue: ");
-                    boolean first = true;
-                    List<Customer> newCustomers = new ArrayList<>(ArrivalQueue);
-                    Collections.sort(newCustomers);
-                    for (Customer customersInQueue : newCustomers) {
-                        if (!first) {
-                            System.out.print(", ");
-                        }
-                        System.out.print(customersInQueue.toString());
-                        first = false;
-                    }
-                    System.out.println();
-                }
                 cashier.greet();
 
                 System.out.println("\nAttending to: " + attendingCustomer.getName());
