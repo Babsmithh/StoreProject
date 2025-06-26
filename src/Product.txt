@@ -1,0 +1,4 @@
+Product, Price, Quantity
+fish,120,0
+gala,200,0
+water,100,1

@@ -4,9 +4,10 @@ public class Store {
     public Store(String name) {
         this.name = name;
     }
-
-    public void hireCashier(Cashier cashier) {
-        System.out.println(cashier.getName() + " has been hired as cashier of " + name);
+    public void openStore(){
+        System.out.println("\n" + name + " is Opened");
     }
-
+    public void closeStore() {
+        System.out.println("\n" + "CLOSING STORE");
+    }
 }

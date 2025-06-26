@@ -1,6 +1,6 @@
 public class Manager extends Staff implements Greeting{
 
-        public Manager(String name, String gender, double salary) {
+        public Manager(String name, double salary) {
             super(name, salary);
         }
     public void greet() {
